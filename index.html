@@ -1571,6 +1571,37 @@ mori.group_by(even_odd, r); // => {"even" (0 2 4 6 8) "odd" (1 3 5 7 9)}
             -->
 
             <h2 id="helpers">Helpers</h2>
+            <h3 id="js_to_clj">
+                js_to_clj
+                <span class="sig">mori.js_to_clj(coll)</span>
+            </h3>
+            <p>
+                Recursively transforms JavaScript arrays into ClojureScript
+                vectors, and JavaScript objects into ClojureScript maps.
+            </p>
+            <div class="example">
+                <pre class="brush: javascript">
+var a = mori.js_to_clj([1, 2, [3, 4], 5]); // => [1 2 [3 4] 5]
+mori.is_vector(a); // => true
+var o = mori.js_to_clj({ foo: 26, bar: 9 }) // => {"foo" 26, "bar" 9}
+mori.is_map(o); // => true
+                </pre>
+            </div>
+
+            <h3 id="clj_to_ks">
+                clj_to_js
+                <span class="sig">mori.clj_to_js(coll)</span>
+            </h3>
+            <p>
+                Recursively transforms ClojureScript values to JavaScript.
+                sets/vectors/lists become Arrays, Maps become Objects.
+            </p>
+            <div class="example">
+                <pre class="brush: javascript">
+var a = mori.clj_to_js(mori.vector(1, 2, mori.vector(3, 4), 5)); // => [ 1, 2, [ 3, 4], 5 ]
+var o = mori.clj_to_js(mori.hash_map(foo, 26, bar, 9)) // => { foo: 26, bar: 9 }
+                </pre>
+            </div>
 
             <h3 id="prim_seq">
                 prim_seq
